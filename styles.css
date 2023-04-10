@@ -1,0 +1,63 @@
+.titleDiv{
+    display: flex;
+    justify-content: center;
+    margin-top: 10rem;
+    font-size: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.boardGame{
+    display: grid;
+    grid-template-columns: repeat(3, 150px);
+    grid-template-rows: repeat(3, 150px);
+    row-gap: none;
+    font-size: 2rem;
+    justify-content: center;
+    
+}
+
+.markers{
+    display: flex;
+    border: solid;
+    justify-content: center;
+    align-items: center;
+    margin: 0px;
+}
+
+#m1, #m2, #m3{
+    border-top: none;
+}
+
+#m1, #m4, #m7{
+    border-left: none;
+}
+
+#m7, #m8, #m9{
+    border-bottom: none;
+}
+
+#m3, #m6, #m9{
+    border-right: none;
+}
+
+.boardGame{
+    margin-bottom: 5rem;
+}
+
+.controls, .buttons{
+    display: flex;
+    height: 3rem;
+    justify-content: center;
+}
+
+.controls{
+    padding: 20px;
+    column-gap: 20px;
+}
+
+.buttons{
+    display: grid;
+    grid-template-columns: repeat(2, 150px);
+    column-gap: 70px;
+    margin-bottom: 200px;
+}
