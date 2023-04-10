@@ -2,15 +2,30 @@ const player1 = document.getElementById("player1");
 const player2 = document.getElementById("player2");
 const startGame = document.getElementById("startBtn");
 const restartGame = document.getElementById("restartBtn");
+
 const boardGame = document.getElementById("board");
+const square1 = document.getElementById("m1");
+const square2 = document.getElementById("m2");
+const square3 = document.getElementById("m3");
+
+const square4 = document.getElementById("m4");
+const square5 = document.getElementById("m5");
+const square6 = document.getElementById("m6");
+
+const square7 = document.getElementById("m7");
+const square8 = document.getElementById("m8");
+const square9 = document.getElementById("m9");
+
 const player1Name = player1.value;
 
 restartGame.disabled = "true";
 
 
 const gameboard = (() => {
-    const add = (a, b) => a + b;
 
+        
+        
+      
   })();
 
 
@@ -63,6 +78,14 @@ function displayNameTags(name){
     };
 
     renderGame();
+
+    
+    const squares = [square1, square2, square3, square4, square5, square6, square7, square8, square9];
+
+    squares.forEach(square => {
+      square.addEventListener("click", () => {
+        square.textContent = "O";
+      })});
 
   });
 
