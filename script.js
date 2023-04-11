@@ -68,7 +68,6 @@ function displayNameTags(name){
     player1NameTag.createNameTag(player1.value);
     player2NameTag.createNameTag(player2.value);
 
-    console.log(player2.value);
 
     player1.parentNode.removeChild(player1);
     player2.parentNode.removeChild(player2);
@@ -79,15 +78,67 @@ function displayNameTags(name){
 
     renderGame();
 
-    
+    let player1Symbol = "O";
+    let player2Symbol = "X";
+
     const squares = [square1, square2, square3, square4, square5, square6, square7, square8, square9];
+    
+  let turn = 0;
 
-    squares.forEach(square => {
-      square.addEventListener("click", () => {
-        square.textContent = "O";
-      })});
+  function checkPlayerTurn(player){
+    
+    turn++;
+    console.log(turn);
+    
+    if(turn == 1 || turn == 3 || turn == 5 || turn == 7 || turn == 9){
+      boardGame.style.color = "pink";
+      let player = player1;
+    }
 
+    else if(turn == 2 || turn == 4 || turn == 6 || turn == 8){
+      boardGame.style.color = "blue";
+      let player = player2;
+    }
+
+    return player;
+  };
+
+    function addPlayerMoves(player){
+
+
+      squares.forEach(square => {
+        square.addEventListener("click", () => {
+
+
+    
+          checkPlayerTurn(player2);
+          
+          if(player = player1){
+            square.textContent = player1Symbol;
+          }
+
+          else if (player = player2){
+            square.textContent = player2Symbol;
+          }
+
+
+         
+        });
+        
+      });
+    
+    };
+
+
+  
+    addPlayerMoves();
+
+
+    
   });
+
+
+
 
 
 //resets player names
