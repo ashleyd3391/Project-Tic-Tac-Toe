@@ -92,32 +92,33 @@ function displayNameTags(name){
     
     if(turn == 1 || turn == 3 || turn == 5 || turn == 7 || turn == 9){
       boardGame.style.color = "pink";
-      let player = player1;
+      return "player1";
+
     }
 
     else if(turn == 2 || turn == 4 || turn == 6 || turn == 8){
       boardGame.style.color = "blue";
-      let player = player2;
+      return "player2";
+
     }
 
-    return player;
+  
   };
 
-    function addPlayerMoves(player){
+    function addPlayerMoves(){
 
 
       squares.forEach(square => {
         square.addEventListener("click", () => {
 
 
-    
-          checkPlayerTurn(player2);
+          const result = checkPlayerTurn();
           
-          if(player = player1){
+          if(result == "player1"){
             square.textContent = player1Symbol;
           }
 
-          else if (player = player2){
+          else if (result == "player2"){
             square.textContent = player2Symbol;
           }
 
