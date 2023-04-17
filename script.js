@@ -87,9 +87,6 @@ function displayNameTags(name){
 
   function checkPlayerTurn(player){
     
-    turn++;
-    console.log(turn);
-    
     if(turn == 1 || turn == 3 || turn == 5 || turn == 7 || turn == 9){
       boardGame.style.color = "pink";
       return "player1";
@@ -102,7 +99,55 @@ function displayNameTags(name){
 
     }
 
+    else if(turn <= 10){
+      alert("Game over!");
+
+      return "end";
+    }
+
+
   
+  };
+
+  function checkWinner(){
+
+    if(((square1.textContent == player1Symbol) && (square2.textContent == player1Symbol) && (square3.textContent == player1Symbol)) 
+    || ((square1.textContent == player1Symbol) && (square4.textContent == player1Symbol) && (square7.textContent == player1Symbol)) 
+    || ((square7.textContent == player1Symbol) && (square8.textContent == player1Symbol) && (square9.textContent == player1Symbol)) 
+    || ((square4.textContent == player1Symbol) && (square5.textContent == player1Symbol) && (square6.textContent == player1Symbol)) 
+    || ((square2.textContent == player1Symbol) && (square5.textContent == player1Symbol) && (square8.textContent == player1Symbol)) 
+    || ((square3.textContent == player1Symbol) && (square6.textContent == player1Symbol) && (square9.textContent == player1Symbol)) 
+    || ((square1.textContent == player1Symbol) && (square5.textContent == player1Symbol) && (square9.textContent == player1Symbol)) 
+    || ((square3.textContent == player1Symbol) && (square5.textContent == player1Symbol) && (square7.textContent == player1Symbol))){
+      alert(`${player1.value}` + " " + "wins!" + " " + "Game over!");
+
+
+    }
+
+    else if(((square1.textContent == player2Symbol) && (square2.textContent == player2Symbol) && (square3.textContent == player2Symbol)) 
+    || ((square1.textContent == player2Symbol) && (square4.textContent == player2Symbol) && (square7.textContent == player2Symbol)) 
+    || ((square7.textContent == player2Symbol) && (square8.textContent == player2Symbol) && (square9.textContent == player2Symbol)) 
+    || ((square4.textContent == player2Symbol) && (square5.textContent == player2Symbol) && (square6.textContent == player2Symbol)) 
+    || ((square2.textContent == player2Symbol) && (square5.textContent == player2Symbol) && (square8.textContent == player2Symbol)) 
+    || ((square3.textContent == player2Symbol) && (square6.textContent == player2Symbol) && (square9.textContent == player2Symbol)) 
+    || ((square1.textContent == player2Symbol) && (square5.textContent == player2Symbol) && (square9.textContent == player2Symbol)) 
+    || ((square3.textContent == player2Symbol) && (square5.textContent == player2Symbol) && (square7.textContent == player2Symbol))){
+      alert(`${player2.value}` + " " + "wins!" + " " + "Game over!");
+
+  
+    }
+
+    
+    restartGame.removeAttribute("disabled");
+    
+
+    function resetGame(){
+      window.location.reload();
+  
+    };
+
+
+    resetGame.addEventListener("click", resetGame);
   };
 
     function addPlayerMoves(){
@@ -111,38 +156,68 @@ function displayNameTags(name){
       squares.forEach(square => {
         square.addEventListener("click", () => {
 
-
+          turn++;
+          console.log(turn);
+      
           const result = checkPlayerTurn();
           
+
           if(result == "player1"){
-            square.textContent = player1Symbol;
+            if((square.textContent == player1Symbol) || (square.textContent == player2Symbol)){
+            console.log("invalid move");
+            turn--;
+           
+            }
+          
+            else{
+              square.textContent = player1Symbol;
+              
+            }
           }
 
           else if (result == "player2"){
-            square.textContent = player2Symbol;
-          }
+            if((square.textContent == player1Symbol) || (square.textContent == player2Symbol)){
+              console.log("invalid move");
+              turn--;
+             
+              }
+            
+              else{
+                square.textContent = player2Symbol;
+                
+          }};
 
-
-         
+          checkWinner();
         });
         
       });
-    
+
     };
 
 
-  
+
+
     addPlayerMoves();
-
-
     
   });
 
 
 
 
+  // Next steps:
 
-//resets player names
-//    player1.value = "";
-//    player2.value = "";
+    //remove ability to add moves after winner is chosen
+
+    //add alert "it is a tie" when turn is equal to 10
+
+    //make restart button functional so a new game can be played
+
+    //remove name tags on screen
+
+    //display turn counter
+
+    // add styling
+        //background & board color
+        //player move colors
+        //buttons
   
