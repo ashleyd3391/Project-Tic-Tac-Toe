@@ -25,39 +25,83 @@ restartGame.disabled = "true";
     return{
         greetPlayers(greeting){
             console.log(greeting);
-            alert(greeting);  
-        }
+
+            if((player1.value == "") || (player2.value == "")){
+              createAlert("Please write your names to start the game", "rgb(34, 70, 148)", "max-content", "30rem", "-25rem", "84rem", "white", "-24rem");
+                
+            }
+
+            else{
+            createAlert(greeting, "rgb(34, 70, 148)", "400px", "44rem", "-54rem", "72rem", "white", "-53rem");
+          
+            function renderGame(){
+              boardGame.style.display = "grid";
+            };
+
+            renderGame();
+
+            player1.parentNode.removeChild(player1);
+            player2.parentNode.removeChild(player2);
+
+            startGame.disabled = "true";
+            
+            };
+      }
     }
   };
 
-  function createAlert(text){
+
+  function createAlert(text, color, width, marginLeft, marginTop, closemarginLeft, closeColor, closeMarginTop){
     const popup = document.createElement('p');
-    popup.style.backgroundColor = "pink";
-    popup.style.position = "absolute";
-    popup.style.marginTop = "-59rem";
-    popup.style.marginLeft = "22rem";
-    popup.style.width = "min-content";
+    popup.style.backgroundColor = color;
+    popup.style.marginTop = marginTop;
+    popup.style.marginLeft = marginLeft;
+    popup.style.width = width;
     popup.style.fontSize = "3rem";
     popup.style.padding = "3rem";
+    popup.style.zIndex = "3";
+    popup.style.position = "absolute";
+    popup.style.borderRadius = "10px";
+    popup.style.color = "white";
     popup.textContent = text;
-
+    
     document.body.append(popup);
+  
+
+
+    const close = document.createElement('button');
+    close.style.width = "35px";
+    close.style.height = "35px";
+    close.style.color = "#363636";
+    close.style.padding = "2px";
+    close.textContent = "X";
+    close.style.marginLeft = closemarginLeft;
+    close.style.position = "absolute";
+    close.style.marginTop = closeMarginTop;
+    close.style.zIndex = "10";
+    close.style.fontSize = "1rem";
+    close.style.backgroundColor = closeColor;
+    close.style.border = "none";
+    document.body.append(close);
+
+    close.addEventListener("click", () => {
+      document.body.removeChild(popup);
+      document.body.removeChild(close);
+    });
+    
+
   };
+
+  function createCloseButton(margin, color){
+  
+  };
+
 
   startGame.addEventListener("click", () => {
     let player1Name = new createPlayers(`${player1.value}`);
     player1Name.greetPlayers("Hi" + " " +`${player1.value}` + " " + "and" + " " + `${player2.value}` + "!"  + " " + "Prepare"  + " " + "for"  + " " + "a"  + " " + "battle" + " " + "of" + " " + "tic-tac-toe," + " " + "let" + " " + "the" + " " + "best"  + " " + "player"  + " " + "win.");
 
-    startGame.disabled = "true";
-
-    player1.parentNode.removeChild(player1);
-    player2.parentNode.removeChild(player2);
-
-    function renderGame(){
-      boardGame.style.display = "grid";
-    };
-
-    renderGame();
+  
 
     let player1Symbol = "O";
     let player2Symbol = "X";
@@ -69,25 +113,24 @@ restartGame.disabled = "true";
   function checkPlayerTurn(player){
     
     if(turn == 1 || turn == 3 || turn == 5 || turn == 7){
-      boardGame.style.color = "pink";
+      boardGame.style.color = "rgb(146, 31, 108)";
       return "player1";
 
     }
 
     else if(turn == 2 || turn == 4 || turn == 6 || turn == 8){
-      boardGame.style.color = "blue";
+      boardGame.style.color = "rgb(34, 70, 148)";
       return "player2";
 
     }
 
     else if(turn <= 9){
 
-      
-
-
       squares.forEach(square => {
         square.removeEventListener("click", addPlayerMoves);
       });
+
+      createAlert("It's a tie!", "purple");
     }
 
 
@@ -100,12 +143,13 @@ restartGame.disabled = "true";
     || ((square1.textContent == player1Symbol) && (square4.textContent == player1Symbol) && (square7.textContent == player1Symbol)) 
     || ((square7.textContent == player1Symbol) && (square8.textContent == player1Symbol) && (square9.textContent == player1Symbol)) 
     || ((square4.textContent == player1Symbol) && (square5.textContent == player1Symbol) && (square6.textContent == player1Symbol)) 
+
     || ((square2.textContent == player1Symbol) && (square5.textContent == player1Symbol) && (square8.textContent == player1Symbol)) 
     || ((square3.textContent == player1Symbol) && (square6.textContent == player1Symbol) && (square9.textContent == player1Symbol)) 
     || ((square1.textContent == player1Symbol) && (square5.textContent == player1Symbol) && (square9.textContent == player1Symbol)) 
     || ((square3.textContent == player1Symbol) && (square5.textContent == player1Symbol) && (square7.textContent == player1Symbol))){
       
-      createAlert(player1.value + " " + "wins!");
+      createAlert(player1.value + " " + "wins!", "pink");
 
       squares.forEach(square => {
         square.removeEventListener("click", addPlayerMoves);
@@ -114,14 +158,17 @@ restartGame.disabled = "true";
     }
 
     else if(((square1.textContent == player2Symbol) && (square2.textContent == player2Symbol) && (square3.textContent == player2Symbol)) 
+    || ((square1.textContent == player1Symbol) && (square2.textContent == player1Symbol) && (square3.textContent == player1Symbol)) 
     || ((square1.textContent == player2Symbol) && (square4.textContent == player2Symbol) && (square7.textContent == player2Symbol)) 
     || ((square7.textContent == player2Symbol) && (square8.textContent == player2Symbol) && (square9.textContent == player2Symbol)) 
     || ((square4.textContent == player2Symbol) && (square5.textContent == player2Symbol) && (square6.textContent == player2Symbol)) 
+
     || ((square2.textContent == player2Symbol) && (square5.textContent == player2Symbol) && (square8.textContent == player2Symbol)) 
     || ((square3.textContent == player2Symbol) && (square6.textContent == player2Symbol) && (square9.textContent == player2Symbol)) 
     || ((square1.textContent == player2Symbol) && (square5.textContent == player2Symbol) && (square9.textContent == player2Symbol)) 
     || ((square3.textContent == player2Symbol) && (square5.textContent == player2Symbol) && (square7.textContent == player2Symbol))){
-      alert(`${player2.value}` + " " + "wins!" + " " + "Game over!");
+      
+      createAlert(player2.value + " " + "wins!", "blue");
       
       squares.forEach(square => {
         square.removeEventListener("click", addPlayerMoves);
@@ -190,7 +237,7 @@ restartGame.disabled = "true";
 
     //remove ability to add moves after winner is chosen - done
 
-    //add alert "it is a tie" when turn is equal to 10 - 
+    //add alert "it is a tie" when turn is equal to 10 - in progress, creating alert function
 
     //make restart button functional so a new game can be played - done
 

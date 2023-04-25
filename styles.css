@@ -1,9 +1,21 @@
+*{
+    background-color: #B9BFFF;
+}
+
 .titleDiv{
     display: flex;
     justify-content: center;
     margin-top: 10rem;
-    font-size: 1.5rem;
+    font-size: 2rem;
+    font-weight: bolder;
     margin-bottom: 3rem;
+    color: white;
+    
+}
+
+#title{
+    padding: 2rem;
+    color:  rgb(102, 95, 189);;
 }
 
 .boardGame{
@@ -60,4 +72,24 @@
     grid-template-columns: repeat(2, 150px);
     column-gap: 70px;
     margin-bottom: 200px;
+}
+
+#startBtn, #restartBtn{
+    background-color: rgb(137, 132, 211);
+    color: rgb(255, 255, 255);
+    border: solid;
+    font-size: 2rem;
+    font-weight: 600;
+    margin-top: 2rem;
+    border-radius:  10px;
+    padding: 15px;
+}
+
+#startBtn:hover, #restartBtn:hover{
+    background-color: rgb(34, 70, 148);
+}
+
+#player1, #player2{
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
 }
