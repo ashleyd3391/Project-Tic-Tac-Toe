@@ -235,20 +235,11 @@ restartGame.disabled = "true";
 
   // Next steps:
 
-    //remove ability to add moves after winner is chosen - done
+    //style message alerts
 
-    //add alert "it is a tie" when turn is equal to 10 - in progress, creating alert function
-
-    //make restart button functional so a new game can be played - done
-
-    //remove name tags on screen - done
-
-    //display turn counter
+    //style board/ symbols
 
     //display invalid moves
 
-    // add styling
-        //background & board color
-        //player move colors
-        //buttons
+
   
