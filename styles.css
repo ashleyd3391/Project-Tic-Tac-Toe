@@ -1,5 +1,5 @@
 *{
-    background-color: #B9BFFF;
+    background-color: #f4f4ff;
 }
 
 .titleDiv{
@@ -15,7 +15,7 @@
 
 #title{
     padding: 2rem;
-    color:  rgb(102, 95, 189);;
+    color:  rgb(102, 95, 189);
 }
 
 .boardGame{
@@ -23,8 +23,10 @@
     grid-template-columns: repeat(3, 150px);
     grid-template-rows: repeat(3, 150px);
     row-gap: none;
-    font-size: 2rem;
+    font-size: 3rem;
     justify-content: center;
+    color: rgb(102, 95, 189);
+
     
 }
 
@@ -85,7 +87,11 @@
     padding: 15px;
 }
 
-#startBtn:hover, #restartBtn:hover{
+#startBtn:hover{
+    background-color: rgb(146, 31, 108);
+}
+
+#restartBtn:hover{
     background-color: rgb(34, 70, 148);
 }
 

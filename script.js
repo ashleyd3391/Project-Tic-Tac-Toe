@@ -1,3 +1,6 @@
+
+//defined variables
+
 const player1 = document.getElementById("player1");
 const player2 = document.getElementById("player2");
 const startGame = document.getElementById("startBtn");
@@ -18,6 +21,11 @@ const square9 = document.getElementById("m9");
 
 const player1Name = player1.value;
 const player2Name = player2.value;
+
+//
+
+
+//Begins game by greeting players and generating board
 
 restartGame.disabled = "true";
 
@@ -50,6 +58,9 @@ restartGame.disabled = "true";
     }
   };
 
+  //
+
+  //Creates a message to the players to signal winners or other alerts
 
   function createAlert(text, color, width, marginLeft, marginTop, closemarginLeft, closeColor, closeMarginTop){
     const popup = document.createElement('p');
@@ -63,6 +74,9 @@ restartGame.disabled = "true";
     popup.style.position = "absolute";
     popup.style.borderRadius = "10px";
     popup.style.color = "white";
+    popup.style.display = "flex";
+    popup.style.justifyContent = "center";
+    popup.style.alignItems = "center";
     popup.textContent = text;
     
     document.body.append(popup);
@@ -92,10 +106,9 @@ restartGame.disabled = "true";
 
   };
 
-  function createCloseButton(margin, color){
-  
-  };
+  //
 
+  //Determines which symbol is used depending on the player and the turn
 
   startGame.addEventListener("click", () => {
     let player1Name = new createPlayers(`${player1.value}`);
@@ -108,6 +121,10 @@ restartGame.disabled = "true";
 
     const squares = [square1, square2, square3, square4, square5, square6, square7, square8, square9];
     
+
+//
+
+//Keeps track of game by counting turns and adding each time a move is made until there is a winner or a tie
   let turn = 0;
 
   function checkPlayerTurn(player){
@@ -130,13 +147,15 @@ restartGame.disabled = "true";
         square.removeEventListener("click", addPlayerMoves);
       });
 
-      createAlert("It's a tie!", "purple");
+      createAlert("It's a tie!", "rgb(34, 70, 148)", "400px", "44rem", "-54rem", "72rem", "white", "-53rem");
     }
 
 
   
   };
+//
 
+//Determines who is the winner when a column or row has the same symbol
   function checkWinner(){
 
     if(((square1.textContent == player1Symbol) && (square2.textContent == player1Symbol) && (square3.textContent == player1Symbol)) 
@@ -149,7 +168,9 @@ restartGame.disabled = "true";
     || ((square1.textContent == player1Symbol) && (square5.textContent == player1Symbol) && (square9.textContent == player1Symbol)) 
     || ((square3.textContent == player1Symbol) && (square5.textContent == player1Symbol) && (square7.textContent == player1Symbol))){
       
-      createAlert(player1.value + " " + "wins!", "pink");
+      createAlert(player1.value + " " + "wins!", "rgb(146, 31, 108)", "150px", "52rem", "-46rem", "64rem", "white", "-45rem");
+
+      createConfetti();
 
       squares.forEach(square => {
         square.removeEventListener("click", addPlayerMoves);
@@ -168,21 +189,42 @@ restartGame.disabled = "true";
     || ((square1.textContent == player2Symbol) && (square5.textContent == player2Symbol) && (square9.textContent == player2Symbol)) 
     || ((square3.textContent == player2Symbol) && (square5.textContent == player2Symbol) && (square7.textContent == player2Symbol))){
       
-      createAlert(player2.value + " " + "wins!", "blue");
+      createAlert(player2.value + " " + "wins!", "rgb(34, 70, 148)", "150px", "52rem", "-46rem", "64rem", "white", "-45rem");
       
+      createConfetti();
+
       squares.forEach(square => {
         square.removeEventListener("click", addPlayerMoves);
       });
   
     };
+//
 
+//Throws confetti for the winner
+
+    function createConfetti(){
+        const confetti = document.createElement('img');
+        confetti.style.width = "45%";
+        confetti.style.height = "40%";
+        confetti.style.marginTop = "-70rem"
+        confetti.style.position = "absolute";
+        confetti.style.background = "none";
+        confetti.style.marginLeft = "30rem";
+        confetti.setAttribute("src", "confetti.gif");
+        document.body.appendChild(confetti);
+    };
+//
+
+//Restarts the game by refreshing window
     restartGame.removeAttribute("disabled");
     restartGame.addEventListener("click", () => {
 
         window.location.reload();
     });
   };
+//
 
+//Allows player to add their move to the board, removes ability once game is over
     function addPlayerMoves(){
 
         turn++;
@@ -195,6 +237,7 @@ restartGame.disabled = "true";
           if((this.textContent == player1Symbol) || (this.textContent == player2Symbol)){
           console.log("invalid move");
           turn--;
+          createAlert("Invalid move! Try again", "rgb(34, 70, 148)", "max-content", "43rem", "-50rem", "74rem", "white", "-49rem");
          
           }
         
@@ -207,6 +250,7 @@ restartGame.disabled = "true";
           if((this.textContent == player1Symbol) || (this.textContent == player2Symbol)){
             console.log("invalid move");
             turn--;
+            createAlert("Invalid move! Try again", "rgb(34, 70, 148)", "max-content", "43rem", "-50rem", "74rem", "white", "-49rem");
            
             }
           
@@ -231,15 +275,3 @@ restartGame.disabled = "true";
   });
 
 
-
-
-  // Next steps:
-
-    //style message alerts
-
-    //style board/ symbols
-
-    //display invalid moves
-
-
-  
