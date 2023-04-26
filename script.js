@@ -228,14 +228,12 @@ restartGame.disabled = "true";
     function addPlayerMoves(){
 
         turn++;
-        console.log(turn);
     
         const result = checkPlayerTurn();
         
 
         if(result == "player1"){
           if((this.textContent == player1Symbol) || (this.textContent == player2Symbol)){
-          console.log("invalid move");
           turn--;
           createAlert("Invalid move! Try again", "rgb(34, 70, 148)", "max-content", "43rem", "-50rem", "74rem", "white", "-49rem");
          
@@ -248,7 +246,6 @@ restartGame.disabled = "true";
 
         else if (result == "player2"){
           if((this.textContent == player1Symbol) || (this.textContent == player2Symbol)){
-            console.log("invalid move");
             turn--;
             createAlert("Invalid move! Try again", "rgb(34, 70, 148)", "max-content", "43rem", "-50rem", "74rem", "white", "-49rem");
            
@@ -274,4 +271,4 @@ restartGame.disabled = "true";
     
   });
 
-
+//
